@@ -16,7 +16,7 @@ def standardize(video_file_path):
     # image_full_path: folder of RGB frames
     out_full_path = os.path.join(global_dst_folder, video_id + ".mp4")
 
-    cmd = "ffmpeg -y -i {} -filter:v fps=fps=30 {}".format(video_file_path, out_full_path)
+    cmd = "ffmpeg -loglevel panic -y -i {} -filter:v fps=fps=30 {}".format(video_file_path, out_full_path)
 
     # Now, extract the frames.
     with progress_counter_lock:
