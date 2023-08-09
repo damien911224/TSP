@@ -53,8 +53,8 @@ if __name__ == '__main__':
         except OSError:
             pass
 
-        # Multiprocessing
-        pool = Pool(processes=num_workers)
-        pool.map(standardize, video_files)
-        pool.close()
-        pool.join()
+    # Multiprocessing
+    pool = Pool(processes=num_workers)
+    pool.map(standardize, video_files)
+    pool.close()
+    pool.join()
