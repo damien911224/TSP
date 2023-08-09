@@ -6,7 +6,7 @@ from multiprocessing import Pool, Value, Lock, current_process
 
 def standardize(video_file_path):
     # Global variables to indicate the progress
-    global progress_counter, progress_counter_lock, global_dst_folder
+    global progress_counter, progress_counter_lock, global_dst_folder, global_len
 
     # Get the video file name and video identity
     video_name = video_file_path.split('/')[-1]
@@ -23,7 +23,7 @@ def standardize(video_file_path):
         progress_counter.value += 1
         print('Standardize Videos ... {:05d} {:06.2f}%'.format(
             progress_counter.value,
-            float(progress_counter.value) / float(len(self.video_files)) * 100.0
+            float(progress_counter.value) / float(len(global_len)) * 100.0
         ))
 
     # Enter the command to the system and flush
@@ -40,10 +40,11 @@ if __name__ == '__main__':
     num_workers = 20
 
     # Global variables to indicate the progress
-    global progress_counter, progress_counter_lock, global_dst_folder
+    global progress_counter, progress_counter_lock, global_dst_folder, global_len
     progress_counter = Value(c_int)
     progress_counter_lock = Lock()
     global_dst_folder = dst_folder
+    global_len = len(video_files)
 
     # Make the destination folder
     if not os.path.exists(dst_folder):
