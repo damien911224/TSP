@@ -42,36 +42,36 @@ def standardize(video_file_path):
             ))
         return
 
-    if not video_cap.isOpened():
-        video_cap.release()
-        with progress_counter_lock:
-            progress_counter.value += 1
-            print('Standardize Videos ... {:05d} {:06.2f}% ERROR: VIDEO CAP :('.format(
-                progress_counter.value,
-                float(progress_counter.value) / float(global_len) * 100.0
-            ))
-        return
-    else:
-        try:
-            fps = video_cap.get(cv2.CAP_PROP_FPS)
-            ext = video_name.split(".")[-1]
-            if fps == 30.0 and ext == "mp4":
-                video_cap.release()
-                # copy(video_file_path, out_full_path)
-                cmd = "cp {} {}".format(video_file_path, out_full_path)
-                with progress_counter_lock:
-                    progress_counter.value += 1
-                    print('Standardize Videos ... {:05d} {:06.2f}% COPY :)'.format(
-                        progress_counter.value,
-                        float(progress_counter.value) / float(global_len) * 100.0
-                    ))
-                # Enter the command to the system and flush
-                os.system(cmd)
-                sys.stdout.flush()
-                return
-        except:
-            pass
-    video_cap.release()
+    # if not video_cap.isOpened():
+    #     video_cap.release()
+    #     with progress_counter_lock:
+    #         progress_counter.value += 1
+    #         print('Standardize Videos ... {:05d} {:06.2f}% ERROR: VIDEO CAP :('.format(
+    #             progress_counter.value,
+    #             float(progress_counter.value) / float(global_len) * 100.0
+    #         ))
+    #     return
+    # else:
+    #     try:
+    #         fps = video_cap.get(cv2.CAP_PROP_FPS)
+    #         ext = video_name.split(".")[-1]
+    #         if fps == 30.0 and ext == "mp4":
+    #             video_cap.release()
+    #             # copy(video_file_path, out_full_path)
+    #             cmd = "cp {} {}".format(video_file_path, out_full_path)
+    #             with progress_counter_lock:
+    #                 progress_counter.value += 1
+    #                 print('Standardize Videos ... {:05d} {:06.2f}% COPY :)'.format(
+    #                     progress_counter.value,
+    #                     float(progress_counter.value) / float(global_len) * 100.0
+    #                 ))
+    #             # Enter the command to the system and flush
+    #             os.system(cmd)
+    #             sys.stdout.flush()
+    #             return
+    #     except:
+    #         pass
+    # video_cap.release()
 
     cmd = "ffmpeg -loglevel panic -y -i {} -filter:v fps=fps=30 {}".format(video_file_path, out_full_path)
 
