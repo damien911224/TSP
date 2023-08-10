@@ -71,14 +71,6 @@ def standardize(video_file_path):
 
     cmd = "ffmpeg -loglevel panic -y -i {} -filter:v fps=fps=30 {}".format(video_file_path, out_full_path)
 
-    # Now, extract the frames.
-    with progress_counter_lock:
-        progress_counter.value += 1
-        print('Standardize Videos ... {:05d} {:06.2f}%'.format(
-            progress_counter.value,
-            float(progress_counter.value) / float(global_len) * 100.0
-        ))
-
     try:
         # Enter the command to the system and flush
         os.system(cmd)
@@ -92,6 +84,14 @@ def standardize(video_file_path):
                 float(progress_counter.value) / float(global_len) * 100.0
             ))
         return
+
+    # Now, extract the frames.
+    with progress_counter_lock:
+        progress_counter.value += 1
+        print('Standardize Videos ... {:05d} {:06.2f}%'.format(
+            progress_counter.value,
+            float(progress_counter.value) / float(global_len) * 100.0
+        ))
 
 if __name__ == '__main__':
 
