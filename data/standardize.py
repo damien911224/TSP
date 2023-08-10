@@ -59,14 +59,14 @@ def standardize(video_file_path):
                 video_cap.release()
                 # copy(video_file_path, out_full_path)
                 cmd = "cp {} {}".format(video_file_path, out_full_path)
-                # Enter the command to the system and flush
-                os.system(cmd)
                 with progress_counter_lock:
                     progress_counter.value += 1
                     print('Standardize Videos ... {:05d} {:06.2f}% COPY :)'.format(
                         progress_counter.value,
                         float(progress_counter.value) / float(global_len) * 100.0
                     ))
+                # Enter the command to the system and flush
+                os.system(cmd)
                 sys.stdout.flush()
                 return
         except:
