@@ -91,6 +91,7 @@ def standardize(video_file_path):
                 progress_counter.value,
                 float(progress_counter.value) / float(global_len) * 100.0
             ))
+        return
 
 if __name__ == '__main__':
 
