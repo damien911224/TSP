@@ -46,7 +46,7 @@ def standardize(video_file_path):
             video_cap.release()
             with progress_counter_lock:
                 progress_counter.value += 1
-                print('Extracting Frames ... {:05d} {:06.2f}% PASS :)'.format(
+                print('Extracting Frames ... {:05d} {:06.2f}% COPY :)'.format(
                     progress_counter.value,
                     float(progress_counter.value) / float(global_len) * 100.0
                 ))
@@ -69,13 +69,13 @@ def standardize(video_file_path):
 
 if __name__ == '__main__':
 
-    video_files = glob.glob(os.path.join('/mnt/hdd0/kinetics/k400/train', '*'))
-    video_files += glob.glob(os.path.join('/mnt/hdd0/kinetics/k400/val', '*'))
-    video_files += glob.glob(os.path.join('/mnt/hdd0/kinetics/k400/test', '*'))
-    video_files += glob.glob(os.path.join('/mnt/hdd0/kinetics/k400/replacement', '*'))
-    dst_folder = os.path.join('/mnt/hdd0/kinetics/k400/standardized_videos')
+    video_files = glob.glob(os.path.join('/mnt/hdd0/kinetics/train', '*'))
+    video_files += glob.glob(os.path.join('/mnt/hdd0/kinetics/val', '*'))
+    video_files += glob.glob(os.path.join('/mnt/hdd0/kinetics/test', '*'))
+    video_files += glob.glob(os.path.join('/mnt/hdd0/kinetics/replacement', '*'))
+    dst_folder = os.path.join('/mnt/hdd0/kinetics/standardized_videos')
 
-    num_workers = 96
+    num_workers = 56
 
     # Global variables to indicate the progress
     global progress_counter, progress_counter_lock, global_dst_folder, global_len
