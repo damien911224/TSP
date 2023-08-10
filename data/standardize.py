@@ -36,9 +36,10 @@ if __name__ == '__main__':
     video_files = glob.glob(os.path.join('/mnt/hdd0/kinetics-dataset/k400/train', '*'))
     video_files += glob.glob(os.path.join('/mnt/hdd0/kinetics-dataset/k400/val', '*'))
     video_files += glob.glob(os.path.join('/mnt/hdd0/kinetics-dataset/k400/test', '*'))
-    dst_folder = os.path.join('/mnt/hdd0/kinetics-dataset/k400/standardized_videos')
+    video_files += glob.glob(os.path.join('/mnt/hdd0/kinetics-dataset/k400/replacement', '*'))
+    dst_folder = os.path.join('/mnt/hdd1/kinetics/k400/standardized_videos')
 
-    num_workers = 20
+    num_workers = 96
 
     # Global variables to indicate the progress
     global progress_counter, progress_counter_lock, global_dst_folder, global_len
