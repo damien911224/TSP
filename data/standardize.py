@@ -79,9 +79,18 @@ def standardize(video_file_path):
             float(progress_counter.value) / float(global_len) * 100.0
         ))
 
-    # Enter the command to the system and flush
-    os.system(cmd)
-    sys.stdout.flush()
+    try:
+        # Enter the command to the system and flush
+        os.system(cmd)
+        sys.stdout.flush()
+    except:
+        video_cap.release()
+        with progress_counter_lock:
+            progress_counter.value += 1
+            print('Standardize Videos ... {:05d} {:06.2f}% ERROR: FFMPEG :('.format(
+                progress_counter.value,
+                float(progress_counter.value) / float(global_len) * 100.0
+            ))
 
 if __name__ == '__main__':
 
