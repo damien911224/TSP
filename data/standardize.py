@@ -1,7 +1,9 @@
 import os
 import sys
 import glob
+import cv2
 
+from shutil import copy
 from ctypes import c_int
 from multiprocessing import Pool, Value, Lock, current_process
 
@@ -12,10 +14,44 @@ def standardize(video_file_path):
     # Get the video file name and video identity
     video_name = video_file_path.split('/')[-1]
     video_id = video_name.split('.')[-2]
-
-    # out_full_path: video folder
-    # image_full_path: folder of RGB frames
     out_full_path = os.path.join(global_dst_folder, video_id + ".mp4")
+
+    if os.path.exists(out_full_path):
+        video_cap = cv2.VideoCapture(out_full_path)
+        if video_cap.isOpened():
+            video_cap.release()
+            with progress_counter_lock:
+                progress_counter.value += 1
+                print('Extracting Frames ... {:05d} {:06.2f}% PASS :)'.format(
+                    progress_counter.value,
+                    float(progress_counter.value) / float(global_len) * 100.0
+                ))
+            return
+
+    video_cap = cv2.VideoCapture(video_file_path)
+    if not video_cap.isOpened():
+        video_cap.release()
+        with progress_counter_lock:
+            progress_counter.value += 1
+            print('Extracting Frames ... {:05d} {:06.2f}% ERROR: VIDEO CAP :('.format(
+                progress_counter.value,
+                float(progress_counter.value) / float(global_len) * 100.0
+            ))
+        return
+    else:
+        fps = video_cap.get(cv2.CAP_PROP_FPS)
+        ext = video_name.split(".")[-1]
+        if fps == 30.0 and ext == "mp4":
+            copy(video_file_path, out_full_path)
+            video_cap.release()
+            with progress_counter_lock:
+                progress_counter.value += 1
+                print('Extracting Frames ... {:05d} {:06.2f}% PASS :)'.format(
+                    progress_counter.value,
+                    float(progress_counter.value) / float(global_len) * 100.0
+                ))
+            return
+    video_cap.release()
 
     cmd = "ffmpeg -loglevel panic -y -i {} -filter:v fps=fps=30 {}".format(video_file_path, out_full_path)
 
