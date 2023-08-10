@@ -73,7 +73,7 @@ if __name__ == '__main__':
     video_files += glob.glob(os.path.join('/mnt/hdd0/kinetics/k400/val', '*'))
     video_files += glob.glob(os.path.join('/mnt/hdd0/kinetics/k400/test', '*'))
     video_files += glob.glob(os.path.join('/mnt/hdd0/kinetics/k400/replacement', '*'))
-    dst_folder = os.path.join('/mnt/hdd1/kinetics/k400/standardized_videos')
+    dst_folder = os.path.join('/mnt/hdd0/kinetics/k400/standardized_videos')
 
     num_workers = 96
 
