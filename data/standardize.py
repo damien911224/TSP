@@ -98,7 +98,7 @@ if __name__ == '__main__':
     video_files = glob.glob(os.path.join('/mnt/hdd0/kinetics-dataset/k400/train', '*'))
     video_files += glob.glob(os.path.join('/mnt/hdd0/kinetics-dataset/k400/val', '*'))
     video_files += glob.glob(os.path.join('/mnt/hdd0/kinetics-dataset/k400/test', '*'))
-    # video_files += glob.glob(os.path.join('/mnt/hdd0/kinetics-dataset/k400/replacement', '*'))
+    video_files += glob.glob(os.path.join('/mnt/hdd0/kinetics-dataset/k400/replacement', '*'))
     dst_folder = os.path.join('/mnt/hdd0/kinetics-dataset/k400/standardized_videos')
 
     num_workers = 20
