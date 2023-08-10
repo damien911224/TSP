@@ -17,18 +17,31 @@ def standardize(video_file_path):
     out_full_path = os.path.join(global_dst_folder, video_id + ".mp4")
 
     if os.path.exists(out_full_path):
-        video_cap = cv2.VideoCapture(out_full_path)
-        if video_cap.isOpened():
-            video_cap.release()
-            with progress_counter_lock:
-                progress_counter.value += 1
-                print('Standardize Videos ... {:05d} {:06.2f}% PASS :)'.format(
-                    progress_counter.value,
-                    float(progress_counter.value) / float(global_len) * 100.0
-                ))
-            return
+        try:
+            video_cap = cv2.VideoCapture(out_full_path)
+            if video_cap.isOpened():
+                video_cap.release()
+                with progress_counter_lock:
+                    progress_counter.value += 1
+                    print('Standardize Videos ... {:05d} {:06.2f}% PASS :)'.format(
+                        progress_counter.value,
+                        float(progress_counter.value) / float(global_len) * 100.0
+                    ))
+                return
+        except:
+            pass
 
-    video_cap = cv2.VideoCapture(video_file_path)
+    try:
+        video_cap = cv2.VideoCapture(video_file_path)
+    except:
+        with progress_counter_lock:
+            progress_counter.value += 1
+            print('Standardize Videos ... {:05d} {:06.2f}% ERROR: VIDEO CAP :('.format(
+                progress_counter.value,
+                float(progress_counter.value) / float(global_len) * 100.0
+            ))
+        return
+
     if not video_cap.isOpened():
         video_cap.release()
         with progress_counter_lock:
