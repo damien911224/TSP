@@ -22,7 +22,7 @@ def standardize(video_file_path):
             video_cap.release()
             with progress_counter_lock:
                 progress_counter.value += 1
-                print('Extracting Frames ... {:05d} {:06.2f}% PASS :)'.format(
+                print('Standardize Videos ... {:05d} {:06.2f}% PASS :)'.format(
                     progress_counter.value,
                     float(progress_counter.value) / float(global_len) * 100.0
                 ))
@@ -33,7 +33,7 @@ def standardize(video_file_path):
         video_cap.release()
         with progress_counter_lock:
             progress_counter.value += 1
-            print('Extracting Frames ... {:05d} {:06.2f}% ERROR: VIDEO CAP :('.format(
+            print('Standardize Videos ... {:05d} {:06.2f}% ERROR: VIDEO CAP :('.format(
                 progress_counter.value,
                 float(progress_counter.value) / float(global_len) * 100.0
             ))
@@ -46,7 +46,7 @@ def standardize(video_file_path):
             video_cap.release()
             with progress_counter_lock:
                 progress_counter.value += 1
-                print('Extracting Frames ... {:05d} {:06.2f}% COPY :)'.format(
+                print('Standardize Videos ... {:05d} {:06.2f}% COPY :)'.format(
                     progress_counter.value,
                     float(progress_counter.value) / float(global_len) * 100.0
                 ))
