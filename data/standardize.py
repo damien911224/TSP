@@ -52,22 +52,21 @@ def standardize(video_file_path):
             ))
         return
     else:
-        # try:
-        #     fps = video_cap.get(cv2.CAP_PROP_FPS)
-        #     ext = video_name.split(".")[-1]
-        #     if fps == 30.0 and ext == "mp4":
-        #         copy(video_file_path, out_full_path)
-        #         video_cap.release()
-        #         with progress_counter_lock:
-        #             progress_counter.value += 1
-        #             print('Standardize Videos ... {:05d} {:06.2f}% COPY :)'.format(
-        #                 progress_counter.value,
-        #                 float(progress_counter.value) / float(global_len) * 100.0
-        #             ))
-        #         return
-        # except:
-        #     pass
-        pass
+        try:
+            fps = video_cap.get(cv2.CAP_PROP_FPS)
+            ext = video_name.split(".")[-1]
+            if fps == 30.0 and ext == "mp4":
+                video_cap.release()
+                with progress_counter_lock:
+                    copy(video_file_path, out_full_path)
+                    progress_counter.value += 1
+                    print('Standardize Videos ... {:05d} {:06.2f}% COPY :)'.format(
+                        progress_counter.value,
+                        float(progress_counter.value) / float(global_len) * 100.0
+                    ))
+                return
+        except:
+            pass
     video_cap.release()
 
     cmd = "ffmpeg -loglevel panic -y -i {} -filter:v fps=fps=30 {}".format(video_file_path, out_full_path)
