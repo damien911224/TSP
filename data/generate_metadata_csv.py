@@ -4,13 +4,20 @@ import argparse
 import os
 import glob
 import pandas as pd
+import cv2
 
-from torchvision.io import read_video_timestamps
+# from torchvision.io import read_video_timestamps
 from joblib import Parallel, delayed
 
 
 def get_video_stats(filename):
-    pts, video_fps = read_video_timestamps(filename=filename, pts_unit='sec')
+    video_cap = cv2.VideoCapture(filename)
+    if video_cap.isOpened():
+        pts = video_cap.get(cv2.CAP_PROP_FRAME_COUNT)
+        video_fps = video_cap.get(cv2.CAP_PROP_FPS)
+    else:
+        video_fps = None
+    # pts, video_fps = read_video_timestamps(filename=filename, pts_unit='sec')
     if video_fps:
         stats = {'filename': os.path.basename(filename),
                  'video-duration': len(pts)/video_fps,
