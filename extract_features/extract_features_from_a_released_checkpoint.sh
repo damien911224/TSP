@@ -4,8 +4,8 @@
 ########################## PARAMETERS THAT NEED TO BE SET ##########################
 ####################################################################################
 
-DATA_PATH= # path/to/video/folder
-METADATA_CSV_FILENAME= # path/to/metadata/csv/file. Use the ones provided in the data folder.
+DATA_PATH=/mnt/hdd0/kinetics-dataset/k400/standardized_videos
+METADATA_CSV_FILENAME=/mnt/hdd0/kinetics-dataset/k400/kinetics.csv
 
 ##############################
 ### RELEASED GITHUB MODELS ###
@@ -38,7 +38,7 @@ STRIDE=16
 # each with a different SHARD_ID from 0 to NUM_SHARDS-1.
 # Each shard will process (num_videos / NUM_SHARDS) videos.
 SHARD_ID=0
-NUM_SHARDS=1
+NUM_SHARDS=10
 DEVICE=cuda:0
 
 if [ -z "$DATA_PATH" ]; then
@@ -57,7 +57,7 @@ fi
 ############################# PARAMETERS TO KEEP AS IS #############################
 ####################################################################################
 
-OUTPUT_DIR=output/${RELEASED_CHECKPOINT}_features/stride_${STRIDE}/
+OUTPUT_DIR=/mnt/hdd0/kinetics-dataset/k400/${RELEASED_CHECKPOINT}_features/stride_${STRIDE}/
 
 source activate tsp
 mkdir -p $OUTPUT_DIR
