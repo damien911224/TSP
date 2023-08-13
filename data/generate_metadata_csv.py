@@ -16,6 +16,7 @@ def get_video_stats(filename):
         pts = video_cap.get(cv2.CAP_PROP_FRAME_COUNT)
         video_fps = video_cap.get(cv2.CAP_PROP_FPS)
     else:
+        pts = 0
         video_fps = None
     # pts, video_fps = read_video_timestamps(filename=filename, pts_unit='sec')
     if video_fps:
