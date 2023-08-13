@@ -20,15 +20,15 @@ def get_video_stats(filename):
     # pts, video_fps = read_video_timestamps(filename=filename, pts_unit='sec')
     if video_fps:
         stats = {'filename': os.path.basename(filename),
-                 'video-duration': len(pts)/video_fps,
+                 'video-duration': pts/video_fps,
                  'fps': video_fps,
-                 'video-frames': len(pts)}
+                 'video-frames': pts}
     else:
         stats = {'filename': os.path.basename(filename),
                  'video-duration': None,
                  'fps': None,
                  'video-frames': None}
-        print(f'WARNING: {filename} has an issue. video_fps = {video_fps}, len(pts) = {len(pts)}.')
+        print(f'WARNING: {filename} has an issue. video_fps = {video_fps}, len(pts) = {pts}.')
     return stats
 
 
