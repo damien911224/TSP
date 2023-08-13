@@ -131,6 +131,7 @@ class EvalVideoDataset(Dataset):
             'is-last-clip': [],
         }
         for i, row in df.iterrows():
+            print(row['fps'])
             total_frames_after_resampling = int(row['video-frames'] * (float(frame_rate) / row['fps']))
             idxs = EvalVideoDataset._resample_video_idx(total_frames_after_resampling, row['fps'], frame_rate)
             if isinstance(idxs, slice):
