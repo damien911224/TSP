@@ -59,7 +59,7 @@ fi
 
 OUTPUT_DIR=/mnt/hdd0/kinetics-dataset/k400/${RELEASED_CHECKPOINT}_features/stride_${STRIDE}/
 
-source activate tsp
+#source activate tsp
 mkdir -p $OUTPUT_DIR
 
 python extract_features.py \
