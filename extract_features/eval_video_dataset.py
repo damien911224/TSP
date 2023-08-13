@@ -139,7 +139,8 @@ class EvalVideoDataset(Dataset):
                 frame_idxs = idxs.numpy()
             clip_t_start = list(frame_idxs[np.arange(0,frame_idxs.shape[0]-clip_length+1,stride)]/row['fps'])
             num_clips = len(clip_t_start)
-            print(num_clips)
+            if not num_clips:
+                continue
 
             clip_metadata['filename'].extend([row['filename']]*num_clips)
             clip_metadata['fps'].extend([row['fps']]*num_clips)
