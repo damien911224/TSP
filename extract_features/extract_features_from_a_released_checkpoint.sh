@@ -62,7 +62,7 @@ OUTPUT_DIR=/mnt/hdd0/kinetics-dataset/k400/${RELEASED_CHECKPOINT}_features/strid
 #source activate tsp
 mkdir -p $OUTPUT_DIR
 
-python extract_features.py \
+python3 extract_features.py \
 --data-path $DATA_PATH \
 --metadata-csv-filename $METADATA_CSV_FILENAME \
 --released-checkpoint $RELEASED_CHECKPOINT \
