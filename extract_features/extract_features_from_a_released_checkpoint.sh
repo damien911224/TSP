@@ -71,5 +71,5 @@ python3 extract_features.py \
 --num-shards $NUM_SHARDS \
 --device $DEVICE \
 --output-dir $OUTPUT_DIR \
---workers 12 \
+--workers 8 \
 --batch-size 32
