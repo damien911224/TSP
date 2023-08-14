@@ -37,7 +37,7 @@ STRIDE=16
 # Increase the number of shards and run this script independently on separate GPU devices,
 # each with a different SHARD_ID from 0 to NUM_SHARDS-1.
 # Each shard will process (num_videos / NUM_SHARDS) videos.
-SHARD_ID=8
+SHARD_ID=9
 NUM_SHARDS=10
 DEVICE=cuda:0
 
