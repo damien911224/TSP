@@ -57,7 +57,7 @@ fi
 ############################# PARAMETERS TO KEEP AS IS #############################
 ####################################################################################
 
-OUTPUT_DIR=/mnt/hdd0/kinetics-dataset/k400/${RELEASED_CHECKPOINT}_features/stride_${STRIDE}/
+OUTPUT_DIR=/mnt/hdd1/kinetics/k400/${RELEASED_CHECKPOINT}_features/stride_${STRIDE}/
 
 #source activate tsp
 mkdir -p $OUTPUT_DIR
