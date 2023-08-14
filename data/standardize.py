@@ -99,13 +99,12 @@ def standardize(video_file_path):
 
 if __name__ == '__main__':
 
-    video_files = glob.glob(os.path.join('/mnt/hdd0/kinetics/train', '*'))
-    video_files += glob.glob(os.path.join('/mnt/hdd0/kinetics/val', '*'))
-    video_files += glob.glob(os.path.join('/mnt/hdd0/kinetics/test', '*'))
-    video_files += glob.glob(os.path.join('/mnt/hdd0/kinetics/replacement', '*'))
-    dst_folder = os.path.join('/mnt/hdd0/kinetics/standardized_videos')
+    video_files = glob.glob(os.path.join('/mnt/hdd0/ActivityNet/v1.3/training', '*'))
+    video_files += glob.glob(os.path.join('/mnt/hdd0/ActivityNet/v1.3/val', '*'))
+    video_files += glob.glob(os.path.join('/mnt/hdd0/ActivityNet/v1.3/test', '*'))
+    dst_folder = os.path.join('/mnt/hdd0/ActivityNet/v1.3/standardized_videos')
 
-    num_workers = 56
+    num_workers = 20
 
     # Global variables to indicate the progress
     global progress_counter, progress_counter_lock, global_dst_folder, global_len
