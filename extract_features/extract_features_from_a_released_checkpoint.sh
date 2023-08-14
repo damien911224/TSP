@@ -72,4 +72,4 @@ python3 extract_features.py \
 --device $DEVICE \
 --output-dir $OUTPUT_DIR \
 --workers 24 \
---batch_size 256
+--batch-size 256
