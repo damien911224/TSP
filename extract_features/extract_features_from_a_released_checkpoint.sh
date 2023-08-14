@@ -70,4 +70,6 @@ python3 extract_features.py \
 --shard-id $SHARD_ID \
 --num-shards $NUM_SHARDS \
 --device $DEVICE \
---output-dir $OUTPUT_DIR
+--output-dir $OUTPUT_DIR \
+--workers 24 \
+--batch_size 256
